@@ -1,8 +1,10 @@
-# implementation of card game - Memory
+# Input comes from a mouse clicks.
+# The implementation is very basic where the cards are just numbers from 0 to 9.
 
 import simplegui
 import random
 
+# Global variables
 CARDS = list()
 TURN = 0
 EXPOSED = list()

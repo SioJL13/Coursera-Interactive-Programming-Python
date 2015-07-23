@@ -1,4 +1,5 @@
 # Mini-project #6 - Blackjack
+#Input comes from mouse clicks.
 
 import simplegui
 import random
@@ -47,6 +48,7 @@ class Card:
             card_loc = (CARD_CENTER[0] + CARD_SIZE[0] * RANKS.index(self.rank),
                     CARD_CENTER[1] + CARD_SIZE[1] * SUITS.index(self.suit))
             canvas.draw_image(card_images, card_loc, CARD_SIZE, [pos[0] + CARD_CENTER[0], pos[1] + CARD_CENTER[1]], CARD_SIZE)
+
 # define hand class
 class Hand:
     def __init__(self):
@@ -104,8 +106,6 @@ class Deck:
             info += str(card) + " "
         return info
 
-
-
 #define event handlers for buttons
 def deal():
     global outcome, in_play, player, dealer, deck, score
@@ -132,6 +132,7 @@ def deal():
     #print "Player hand", str(player.get_value())
     #print "Dealer hand", str(dealer.get_value())
 
+#define event handlers for the hit button
 def hit():
     global score, in_play, outcome
 
@@ -147,6 +148,7 @@ def hit():
             #outcome = "Dealer: " + str(dealer.get_value()) + "  Player: " + str(player.get_value())
             #print outcome
 
+#define event handlers for the stand button
 def stand():
     global score,outcome,in_play
 
@@ -173,6 +175,7 @@ def stand():
             in_play = False
             #print "Player",str(player.get_value()),"Dealer",str(dealer.get_value())
 
+# In this implementation if the card values are the same. Dealer wins
         elif dealer.get_value() == player.get_value():
             outcome = "Tie game. Dealer wins. Deal again?"
             #print outcome
@@ -186,6 +189,7 @@ def stand():
             in_play = False
             #print "Player",str(player.get_value()),"Dealer",str(dealer.get_value())
 
+# Event handler to close the window
 def exit_game():
     frame.stop()
 
@@ -214,6 +218,3 @@ frame.set_draw_handler(draw)
 # get things rolling
 deal()
 frame.start()
-
-
-# remember to review the gradic rubric
