@@ -1,4 +1,7 @@
-# template for "Stopwatch: The Game"
+# Input will come from buttons inside the frame.
+# The objective of the game is to stop the clock in tenths of seconds.
+# Example. 1:00.00 will grant a point.
+
 import simplegui
 # define global variables
 cntr,x,y = 0,0,0
@@ -12,15 +15,15 @@ def format(t):
     B = (t%600)//100
     C = (t%100)//10
     D = t%10
-    
+
     return str(A)+":"+str(B)+str(C)+"."+str(D)
-    
+
 # define event handlers for buttons; "Start", "Stop", "Reset"
 def start_handler():
     global timer_has_been_stopped
     timer.start()
     timer_has_been_stopped = False
-    
+
 def stop_handler():
     global y,x,timer_has_been_stopped
     timer.stop()
@@ -29,12 +32,12 @@ def stop_handler():
         timer_has_been_stopped=True
     	if(cntr % 10 == 0):
         	x+=1
-    
+
 def reset_handler():
     global cntr,x,y
     timer.stop()
     cntr,x,y = 0,0,0
-    
+
 # define event handler for timer with 0.1 sec interval
 def timer_handler():
     global cntr
@@ -46,7 +49,7 @@ def draw_handler(canvas):
     global x,y
     canvas.draw_text(format(cntr),[50,100],40,"Red")
     canvas.draw_text(str(x)+"/"+str(y),[130,25],25,"Green")
-    
+
 # create frame
 frame = simplegui.create_frame("Stop watch",180,180)
 
